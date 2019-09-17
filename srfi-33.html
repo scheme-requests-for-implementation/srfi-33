@@ -65,7 +65,7 @@
     <li>completely open, public-domain source</li>
   </ul>
   <p>  The precise semantics of these operators is almost never an issue. A
-    consistent, portable set of *names* and *parameter conventions*, however, is.
+    consistent, portable set of <b>names</b> and <b>parameter conventions</b>, however, is.
     Hence this SRFI.</p>
   <h1>Function index</h1>
   <pre>
@@ -161,8 +161,8 @@
   (bitwise-xor)  =>  0     (bitwise-eqv) => -1
   </pre>
 
-  <p>Note that (bitwise-eqv a b c) does *not* produce a 1 bit
-    everywhere a, b & c all agree. That is, it does *not* produce</p>
+  <p>Note that (bitwise-eqv a b c) does <b>not</b> produce a 1 bit
+    everywhere a, b & c all agree. That is, it does <b>not</b> produce</p>
   <pre>
   (bitwise-ior (bitwise-and a b c)
   (bitwise-and (bitwise-not a)
@@ -309,7 +309,7 @@
   <p>
     It is not optional for the associative bitwise ops to be n-ary
     instead of merely binary. They are required to be n-ary. Programmers
-    can *reliably* write BITWISE-AND with 3 arguments, for example.</p>
+    can <b>reliably</b> write BITWISE-AND with 3 arguments, for example.</p>
 
   <p>This design mirrors the structure of Common Lisp's pretty closely.
     Here are some differences:</p>
@@ -346,26 +346,29 @@
     <li> I also punted the 6 trivial binary boolean ops. I kept the six non-trivial
       but less common ops.</li>
 
-    <li>Is the inclusive-or function written "or" or "ior"? This kind of thing
-      trips me up all the time when I use these types of functions. In my
-      design, there's a simple rule: it is *never* simply "or." The "or" always
-      has modifiers -- "xor," "ior," "nor," "orc1," and "orc2."</li>
   </ul>
+
+  <p><b>Is the inclusive-or function written "or" or "ior"?</b></p>
+  <p>This kind of thing
+    trips me up all the time when I use these types of functions. In my
+    design, there's a simple rule: it is <b>never</b> simply "or." The "or" always
+    has modifiers -- "xor," "ior," "nor," "orc1," and "orc2."</p>
 
   <p>
 
-    As it turns out, my boolean op names are *exactly* Common Lisp's. Although
+    As it turns out, my boolean op names are <b>exactly</b> Common Lisp's. Although
     that was not an important criterion for the design, it's an extra plus.</p>
 
   <p>
-    Why not a minimal set of ops?
+    <b>Why not a minimal set of ops?</b></p>
+  <p>
     I included extra and redundant functions such as BIT-COUNT, BITWISE-NOR,
     and the bit-field ops in my design. Doing so helps readability, writability,
-    and efficiency.
+    and efficiency.</p>
 
     <ul>
       <li>
-        Readability:
+        <p>Readability:</p>
         <p>
           Settling on a standard choice of names makes it easier to read
           code that uses these sorts of operations. It also means computations
@@ -382,32 +385,32 @@
           What we gain is having an agreed-upon set of names by which we can refer
           to these functions.</p>
       </li>
-      <li> Writability:
+      <li> <p>Writability:</p><p>
         The programmer doesn't have to re-implement these functions, and stumble
         over the boundary cases and error checking. The programmer can express
-        himself using a full palette of building blocks.</li>
+        himself using a full palette of building blocks.</p></li>
 
-      <li> Efficiency:
-        Compilers can directly implement these ops for great efficiency gains
-        without requiring any tricky analysis.</li></ul>
+      <li> <p>Efficiency:</p><p>
+          Compilers can directly implement these ops for great efficiency gains
+          without requiring any tricky analysis.</p></li></ul>
 
     <p>
 
       If you believe in "small is beautiful," then what is your motivation
       for including anything beyond BITWISE-NAND?</p>
 
-    <p>Why no "logical" right or left shift operations?</p>
+    <p><b>Why no "logical" right or left shift operations?</b></p>
 
     <p>
       Because they are not well defined on general integers; they are only defined
       on integers in some finite range. Remember that, in this library, integers
-      are interpreted as *semi-infinite* bit strings that have only a finite
+      are interpreted as <b>semi-infinite</b> bit strings that have only a finite
       number of ones or a finite number of zeroes. "Logical" shifting shifts bit
       strings of some fixed size. If we shift left, then leftmost bits "fall off"
       the end (and zeroes shift in on the right). If we shift right, then zeroes
       shift into the string on the left (and rightmost bits fall off the end). So
-      to define a logical shift operation, *we must specify the size of the
-      window.* Typically this is the width of the underlying machine's register
+      to define a logical shift operation, <b>we must specify the size of the
+      window.</b> Typically this is the width of the underlying machine's register
       set (e.g., 32 bits). This is blatantly machine-specific & unportable, and
       clearly not the right thing for Scheme's more machine-independent general
       integers. For Scheme's integers, arithmetic shift is the right thing. Note
@@ -424,7 +427,7 @@
       thing for general integers.</p>
 
     <p>
-        In June 1996, this proposal went through a round of discussion on the Net,
+      <b>In June 1996, this proposal went through a round of discussion on the Net</b>,
         in particular with Will Clinger and Aubrey Jaffer. This resulted in several
         updates:</p>
     <ul><li>
@@ -437,8 +440,8 @@
     <p>
       After the discussion converged, the proposal sat on my disk for six years.</p>
 
-    <p>This is a purely functional, side-effect-free implementation of bit
-      operations -- all operations produce new, fresh results, rather than
+    <p><b>This is a purely functional, side-effect-free implementation of bit
+      operations</b> -- all operations produce new, fresh results, rather than
       modifying old values. This can be implemented very efficiently for small
       bit vectors -- small enough to be unboxed values. Algorithms that work
       on larger bit vectors, however (such as data-flow analysis engines), might
@@ -563,7 +566,7 @@
     </pre>
     <p>
       MIT Scheme also has a distinct datatype, the "bit vector." A bit vector
-      is *very* different, in that it its elements are mutable -- it is a mutable
+      is <b>very</b> different, in that it its elements are mutable -- it is a mutable
       vector of bits.</p>
 
     <p>Constants are written with a sharp-star prefix, e.g. <code>#*11111</code>.</p>
@@ -627,7 +630,7 @@
       INTEGER-LENGTH.  Slib has implementations of even these functions using R4RS
       arithmetic, so a simple-minded implementation again doesn't need to do much to
       support them -- however, slib's general implementations are terribly
-      inefficient relative to native support and should *not* be used except in case
+      inefficient relative to native support and should <b>not</b> be used except in case
       of dire emergency. (It's quite clever code, nonetheless, to provide the
       semantics with such little support.)</p>
     <p>
@@ -640,7 +643,7 @@
       invoked in the standard cases -- that is, an application of BITWISE-EQV should
       be rewritten into an equivalent tree applying some two-argument primitive to
       the arguments, in the same manner that statically-known n-ary applications of
-      associative operations such as + and * are handled efficiently:</p>
+      associative operations such as <code>+</code> and <code>*</code> are handled efficiently:</p>
     <pre>
   (bitwise-eqv)         => -1
   (bitwise-eqv i)       => i
@@ -775,8 +778,8 @@
     <p>
       The "bitwise boolean" functions such as BITWISE-AND only take bitstring
       parameters. But the following 10 functions are different in that they take
-      other *kinds* of parameters (masks, indices, field sizes) that indicate *the
-      exact operation to perform* on the bitstring parameter(s):
+      other <b>kinds</b> of parameters (masks, indices, field sizes) that indicate <b>the
+      exact operation to perform</b> on the bitstring parameter(s):
     </p>
     <pre>
   arithmetic-shift i count -> integer
@@ -864,7 +867,7 @@
 
     <h2>Copyright</h2>
     <p>
-      This document is copyright (C) Olin Shivers (1998, 1999).
+      This document is copyright &copy; Olin Shivers (1998, 1999).
       All Rights Reserved.</p>
     <p>
       However, the program source found in section "Reference Implementation"
