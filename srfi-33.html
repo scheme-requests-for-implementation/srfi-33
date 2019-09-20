@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>SRFI 33: Integer Bitwise-operation Library</title>
@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/srfi.css" type="text/css">
   <link href="/favicon.png" rel="icon" sizes="192x192" type=
 	"image/png">
-  <style type="text/css">.indent { margin-left: 1.4em; } .indent2 { margin-left: 2.8em; }</style>
+  <style>.indent { margin-left: 1.4em; } .indent2 { margin-left: 2.8em; }</style>
 </head>
 <body>
   <h1>Title</h1>
@@ -273,7 +273,6 @@ test-bit-field?   size position i -&gt; boolean
 clear-bit-field   size position i -&gt; exact-integer
 replace-bit-field size position new-field i -&gt; exact-integer
 copy-bit-field    size position from to     -&gt; exact-integer</pre>
-  </pre>
   <p class="indent">These functions operate on a contiguous field of bits (a
   "byte," in Common-Lisp parlance) in a given bitstring I. SIZE and
   POSITION are non-negative exact integers specifying the field: it
@@ -303,7 +302,7 @@ copy-bit-field    size position from to     -&gt; exact-integer</pre>
   Programmers can <b>reliably</b> write BITWISE-AND with 3
   arguments, for example.</li>
   <li>This design mirrors the structure of Common Lisp's pretty
-    closely. Here are some differences:</li>
+    closely. Here are some differences:
   <ul>
     <li>"load" and "deposit" are the wrong verbs (e.g., Common
     Lisp's LDB and DPB ops), since these guys have nothing to do
@@ -332,7 +331,7 @@ copy-bit-field    size position from to     -&gt; exact-integer</pre>
     </li>
     <li>I also punted the 6 trivial binary boolean ops. I kept the
     six non-trivial but less common ops.</li>
-  </ul>
+  </ul></li>
   <li><b>Is the inclusive-or function written "or" or "ior"?</b>
   <p>This kind of thing trips me up all the time when I use these
   types of functions. In my design, there's a simple rule: it is
@@ -395,7 +394,7 @@ copy-bit-field    size position from to     -&gt; exact-integer</pre>
   integers. For Scheme's integers, arithmetic shift is the right
   thing. Note that this situation pertains as well in Common Lisp,
   and Common Lisp does exactly what this SRFI does: arithmetic
-    shift, but no logical shift.</p></li>
+    shift, but no logical shift.</p>
   <p>If we were to define a "width 32" or "width 64" or "fixnum"
   integer datatype, then we could meaningfully define logical shift
   for these values.</p>
